@@ -1,0 +1,7 @@
+mkdir -p /home/profiles
+
+
+#/etc/samba/smb.conf
+#[Profiles]
+#     path = /home/profiles/
+#     read only = no
