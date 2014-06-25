@@ -26,6 +26,12 @@ EXIT_ERROR=2
 # unknown ERROR
 EXIT_BUG=10
 
+if [ `id -u` != 0 ]; then
+    echo "Please login as ROOT user to execute your script : $@!"
+    sleep 2
+    exit 1
+fi
+
 # Variable for optionsswitch
 #OPTFILE=""
 #fbname=$(basename "$1".txt)
