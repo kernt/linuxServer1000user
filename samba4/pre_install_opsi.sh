@@ -1,6 +1,6 @@
-#!/bin/env bash
+#!/bin/bash
 #
-# Script-Name : .sh
+# Script-Name : pre_install_opsi.sh
 # Version     : 0.0.1
 # Autor       : Tobias Kern
 # Datum       : 25-06-2014
