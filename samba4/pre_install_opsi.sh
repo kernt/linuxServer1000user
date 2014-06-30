@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 #
 # Script-Name : .sh
 # Version     : 0.0.1
