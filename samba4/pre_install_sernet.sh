@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 #
 # Script-Name : pre_install_sernet.sh
 # Version     : 0.01
