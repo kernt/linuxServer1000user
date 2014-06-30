@@ -1,0 +1,86 @@
+[global]
+        debug level     = 1
+        syslog          = 0
+        max log size    = 0
+
+        netbios name    = opsismb4
+        server role     = active directory domain controller
+        server string   = Univention Corporate Server
+        server services = -dns -smb +s3fs -nbt
+        server role check:inhibit = yes
+        # use nmbd; to disable set samba4/service/nmb to s4
+        nmbd_proxy_logon:cldap_server=127.0.0.1
+        workgroup       = EXAMPLE
+        realm           = EXAMPLE.COM
+
+        tls enabled     = yes
+        tls keyfile     = /etc/univention/ssl/opsismb4.example.com/private.key
+        tls certfile    = /etc/univention/ssl/opsismb4.example.com/cert.pem
+        tls cafile      = /etc/univention/ssl/ucsCA/CAcert.pem
+
+        dsdb:schema update allowed = no
+        max open files = 32808
+        machine password timeout        = 0
+
+; ---------------------</10global>------------------------
+; ---------------------<smb service configuration>-----------------------
+
+        debug hirestimestamp = yes
+        debug pid = yes
+; ---------------------</smb service configuration>----------------------
+
+        winbind separator = +
+        template shell = /bin/bash
+        template homedir = /home/%D-%U
+
+        idmap config * : backend = tdb
+        idmap config * : range = 300000-400000
+
+        passwd chat = *New*password* %n\n *Re-enter*new*password* %n\n *password*changed*
+
+        obey pam restrictions = yes
+        encrypt passwords = yes
+
+        ; printing
+        load printers = yes
+        printing = cups
+        printcap name = cups
+
+        ; domain service lookup related settings
+        preferred master = yes
+        local master = yes
+        domain master = yes
+        wins support = yes
+
+        ; miscellaneous settings, mostly for file services
+        oplocks = yes
+        large readwrite = yes
+        read raw = yes
+        write raw = yes
+        max xmit = 65535
+        acl:search = no
+        host msdfs = yes
+        kernel oplocks = yes
+        deadtime = 15
+        getwd cache = yes
+        wide links = no
+        store dos attributes = yes
+        max protocol = SMB2
+        logon home = \\opsismb4\%U
+        logon drive = I:
+        logon path = \\opsismb4\%U\windows-profiles\%a
+        preserve case = yes
+        short preserve case = yes
+
+        guest account = nobody
+        map to guest = Bad User
+        admin users = administrator join-backup
+
+
+        usershare max shares = 0
+
+
+; -----------------------------------------------------------------------------------------------------------
+        include = /etc/samba/base.conf
+
+        include = /etc/samba/shares.conf
