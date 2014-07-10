@@ -5,7 +5,7 @@
 
         netbios name    = opsismb4
         server role     = active directory domain controller
-        server string   = Univention Corporate Server
+        server string   = uper50user Server
         server services = -dns -smb +s3fs -nbt
         server role check:inhibit = yes
         # use nmbd; to disable set samba4/service/nmb to s4
@@ -14,9 +14,9 @@
         realm           = EXAMPLE.COM
 
         tls enabled     = yes
-        tls keyfile     = /etc/univention/ssl/opsismb4.example.com/private.key
-        tls certfile    = /etc/univention/ssl/opsismb4.example.com/cert.pem
-        tls cafile      = /etc/univention/ssl/ucsCA/CAcert.pem
+        tls keyfile     = /etc/samba/ssl/opsismb4.example.com/private.key
+        tls certfile    = /etc/samba/ssl/opsismb4.example.com/cert.pem
+        tls cafile      = /etc/samba/ssl/ucsCA/CAcert.pem
 
         dsdb:schema update allowed = no
         max open files = 32808
