@@ -52,8 +52,10 @@ SERNETUSER=READEDSERNETUSER
 SERNETACCESSKEY=READEDSERNETACCESSKEY
 
 ## Pre depends install for Sernet sources
-
-apt-get --yes install apt-transport-https
+[ -e /usr/lib/apt/methods/https ] || {
+  apt-get update
+  apt-get --yes install apt-transport-https
+}
 
 #####
 # test whether variables woks with next lines
